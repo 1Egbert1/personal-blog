@@ -1,0 +1,19 @@
+目录
+
+ |--index.js
+ |
+ |--databasecontrol.js
+ |
+ |--static
+    |
+    |--index.html
+    |
+    |--page.html
+
+ |--<mongodb>
+
+
+1. 搜索引擎优化非常好 - 因为请求获得的是完整的html内容
+2. 适合制作多个页面的整体逻辑
+
+1. 后端压力大 - 逻辑复制，填充过程复杂

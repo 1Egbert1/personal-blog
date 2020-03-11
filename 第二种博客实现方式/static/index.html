@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./js/jquery-3.3.1.min.js"></script>
+</head>
+<body>
+    <div>
+        <ul id="list">
+            <li>孙东和xx的那些事</li>
+        </ul>
+    </div>
+    <div class="content">
+
+    </div>
+    <script>
+        var getPage = function (_id) {
+            $.ajax({
+                type: 'get',
+                url: '/page',
+                data: {
+                    _id : _id
+                },
+                success: function (e) {
+                    $('.content').html(e[0].content)
+                }
+            })
+        }
+        var fillList = function (arr) {
+            var html = ''
+            arr.forEach(element => {
+                html += `
+                    <li class="item" data-_id=${element._id}>${element.title}</li>
+                `
+            })
+            $('#list').html(html)
+            $('.item').on('click',function(){
+                getPage(
+                    $(this).attr('data-_id')
+                )
+            })
+        }
+        var getList = function () {
+            $.ajax({
+                type: 'get',
+                url: '/list',
+                data: {},
+                success: function (e) {
+                    fillList(e)
+                }
+            })
+        }
+        getList()
+
+
+    </script>
+</body>
+
+</html>
